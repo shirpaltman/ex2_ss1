@@ -5,17 +5,13 @@ int main() {
     char userChoice;
 
      do {
-        printf("Menu:\n");
-        printf("A - Execute Function 1\n");
-        printf("B - Execute Function 2\n");
-        printf("C - Execute Function 3\n");
-        printf("D - Exit\n");
-
-        printf("Enter your choice: ");
+        
+        
+        
         userChoice = getchar();  // Read a character
 
         // Clear the input buffer
-        while (getchar() != '\n');
+        //while (getchar() != '\n');
 
         switch (userChoice) {
             case 'A':
@@ -41,10 +37,9 @@ int main() {
                 break;
 
             case 'D':
-                printf("Exiting the program. Goodbye!\n");
                 break;
             default:
-            printf("Invalid input\n");
+                break;
     
         }
     } while (userChoice != 'D');  // Continue the loop until the user chooses to exit

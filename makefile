@@ -6,10 +6,10 @@ AFLAGS = rcs
 
 .PHONY: all clean
 
-all: my_graph 
+all: connections 
 
-my_graph: my_graph.o libmymath.a
-	$(CC) $(CFLAGS) my_graph.o libmymath.a -o my_graph
+connections: my_graph.o libmymath.a
+	$(CC) $(CFLAGS) my_graph.o libmymath.a -o connections
 
 libmymath.a: my_mat.o
 	$(AR) $(AFLAGS) libmymath.a my_mat.o
@@ -21,4 +21,4 @@ my_mat.o: my_mat.c my_mat.h
 	$(CC) $(CFLAGS) -c my_mat.c
 
 clean:
-	rm -f *.o *.a my_graph
+	rm -f *.o *.a connections
