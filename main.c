@@ -32,7 +32,7 @@ int main() {
                 int i=0;
                 int j=0;
                 scanf("%d %d",&i,&j);
-                function3();
+                floydWarshall(i,j);
                 break;
 
             case 'D':

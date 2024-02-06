@@ -1,7 +1,11 @@
 
 #include <stdio.h>
 int dist[V][V];
-void scanMatrix(int matrix[10][10]) {
+int matrix[10][10];
+int floydRun=0;
+
+
+void scanMatrix() {
     printf("Enter values to the matrix:");
     for(int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
@@ -12,8 +16,11 @@ void scanMatrix(int matrix[10][10]) {
 }
 
 int ifHasPath(int i,int j){
-    if (matrix[i][j]>0){
-        printf("True");
+    if (floydRun==0){
+        floydWarshall(int matrix[10][10]);
+    }
+    if (dist[i][j]>0){
+        printf("True");      
         return 1;
     }
     else{
@@ -29,7 +36,7 @@ void floydWarshall(int matrix[10][10]) {
     // Initialize the solution matrix same as the input graph matrix.
     for (i = 0; i < V; i++)
         for (j = 0; j < V; j++)
-            dist[i][j] = graph[i][j];
+            dist[i][j] = matrix[i][j];
 
     // Add all vertices one by one to the set of intermediate vertices.
     // Before start of an iteration, we have shortest distances between all pairs of vertices such that
@@ -47,7 +54,7 @@ void floydWarshall(int matrix[10][10]) {
             }
         }
     }
-
+     floydRun=1;
     // Print the shortest distance matrix.
     printSolution(dist);
 }
