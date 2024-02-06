@@ -1,21 +1,16 @@
 
 #include <stdio.h>
 #include "my_mat.h"
-int dist[4][4];
-int matrix[4][4];
+
+int dist[10][10];
+int matrix[10][10];
 int floydRun=0;
-int V = 4;
-int main() {
-    scanMatrix();
-    ifHasPath(0,0);
-    floydWarshall();
-    printMatrix();
-    
-    return 0;
-}
+int V = 10;
+
 
 void scanMatrix() {
-    printf("Enter values to the matrix:");
+    printf("Enter values to the matrix: \n");
+    floydRun = 0;
     int scanfChar = 0;
     for(int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
@@ -24,7 +19,8 @@ void scanMatrix() {
             dist[i][j] = scanfChar;
         } 
     }
-    printf("finished");
+    
+    
 }
 
 void floydWarshall() {
@@ -42,11 +38,11 @@ void floydWarshall() {
             // Pick all vertices as destination for the above picked source.
             for (j = 0; j < V; j++) {
                 // If vertex k is on the shortest path from i to j, then update the value of dist[i][j]
-                if (dist[i][k] != 0 && dist[k][j] != 0 && (dist[i][k] + dist[k][j] < dist[i][j] || dist[i][j] == 0))
+                if (dist[i][k] != 0 && dist[k][j] != 0 && (dist[i][k] + dist[k][j] < dist[i][j] || dist[i][j] == 0)){
+                    if (i!=j){
                     dist[i][j] = dist[i][k] + dist[k][j];
-                if (i==j){
-                    dist[i][j]=0;
                 }
+            }
                 
             }
         }
@@ -77,6 +73,7 @@ int ifHasPath(int i,int j){
 void printMatrix() {
     //printf("Enter values to the matrix:");
     //int scanfChar = 0;
+    printf("\n");
     for(int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
             printf("%d",dist[i][j]);
@@ -84,5 +81,15 @@ void printMatrix() {
         } 
         printf("\n");
     }
-    printf("finished");
+    
+}
+
+int printLength(int k,int s ){
+    if (floydRun != 1){
+        floydWarshall();
+    }
+    if(dist[k][s]){
+        return dist[k][s];
+    }
+    return -1;                         
 }

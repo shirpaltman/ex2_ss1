@@ -20,6 +20,7 @@ int main() {
         switch (userChoice) {
             case 'A':
                 scanMatrix();
+                printf("\n");
                 break;
 
             case 'B':
@@ -27,13 +28,16 @@ int main() {
                 int j=0;
                 scanf("%d %d",&i,&j);
                 ifHasPath(i,j);
+                printf("\n");
                 break;
 
             case 'C':
                 int k=0;
                 int s=0;
                 scanf("%d %d",&k,&s);
-                floydWarshall(k,s);
+                //floydWarshall(k,s);
+                printf("%d",printLength(k,s));
+                printf("\n");
                 break;
 
             case 'D':
