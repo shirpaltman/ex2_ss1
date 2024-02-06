@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include "my_mat.h"
 int dist[V][V];
 int matrix[10][10];
 int floydRun=0;
@@ -56,5 +57,5 @@ void floydWarshall(int matrix[10][10]) {
     }
      floydRun=1;
     // Print the shortest distance matrix.
-    printSolution(dist);
+    //printSolution(dist);
 }
