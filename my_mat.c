@@ -1,44 +1,36 @@
 
 #include <stdio.h>
 #include "my_mat.h"
-int dist[V][V];
-int matrix[10][10];
+int dist[4][4];
+int matrix[4][4];
 int floydRun=0;
-
+int V = 4;
+int main() {
+    scanMatrix();
+    ifHasPath(0,0);
+    floydWarshall();
+    printMatrix();
+    
+    return 0;
+}
 
 void scanMatrix() {
     printf("Enter values to the matrix:");
-    for(int i = 0; i < 10; i++) {
-        for (int j = 0; j < 10; j++) {
-            scanf("%d\t", matrix[i][j]);
-        }
-        
+    int scanfChar = 0;
+    for(int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            scanf("%d\t", &scanfChar);
+            matrix[i][j] = scanfChar;
+            dist[i][j] = scanfChar;
+        } 
     }
+    printf("finished");
 }
 
-int ifHasPath(int i,int j){
-    if (floydRun==0){
-        floydWarshall(int matrix[10][10]);
-    }
-    if (dist[i][j]>0){
-        printf("True");      
-        return 1;
-    }
-    else{
-        printf("False");
-        return 0;  
-    }
-}
-
-
-void floydWarshall(int matrix[10][10]) {
+void floydWarshall() {
     int  i, j, k;
 
-    // Initialize the solution matrix same as the input graph matrix.
-    for (i = 0; i < V; i++)
-        for (j = 0; j < V; j++)
-            dist[i][j] = matrix[i][j];
-
+    
     // Add all vertices one by one to the set of intermediate vertices.
     // Before start of an iteration, we have shortest distances between all pairs of vertices such that
     // the shortest distances consider only the vertices in set {0, 1, 2, .. k-1} as intermediate vertices.
@@ -58,4 +50,35 @@ void floydWarshall(int matrix[10][10]) {
      floydRun=1;
     // Print the shortest distance matrix.
     //printSolution(dist);
+}
+int ifHasPath(int i,int j){
+    if (floydRun != 1){
+        floydWarshall();
+    }
+    if (i==j){
+        printf("False");
+        return 0;
+    }
+    else if (dist[i][j]>0){
+        printf("True");      
+        return 1;
+    }
+    else{
+        printf("False");
+        return 0;  
+    }
+}
+
+
+void printMatrix() {
+    //printf("Enter values to the matrix:");
+    //int scanfChar = 0;
+    for(int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            printf("%d",dist[i][j]);
+            
+        } 
+        printf("\n");
+    }
+    printf("finished");
 }

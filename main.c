@@ -39,6 +39,9 @@ int main() {
             case 'D':
                 printf("Exiting the program. Goodbye!\n");
                 break;
+            default:
+            printf("Invalid input\n");
+    
         }
     } while (userChoice != 'D');  // Continue the loop until the user chooses to exit
     return 0;

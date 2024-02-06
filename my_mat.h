@@ -5,6 +5,7 @@
 
 void scanMatrix();
 int ifHasPath(int i,int j);
-void floydWarshall(int matrix[10][10]);
+void floydWarshall();
+void printMatrix();
 
-#endif
+#endif 
