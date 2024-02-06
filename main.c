@@ -12,12 +12,12 @@ int main() {
         printf("D - Exit\n");
 
         printf("Enter your choice: ");
-        choice = getchar();  // Read a character
+        userChoice = getchar();  // Read a character
 
         // Clear the input buffer
         while (getchar() != '\n');
 
-        switch (choice) {
+        switch (userChoice) {
             case 'A':
                 scanMatrix();
                 break;
@@ -30,16 +30,16 @@ int main() {
                 break;
 
             case 'C':
-                int i=0;
-                int j=0;
-                scanf("%d %d",&i,&j);
-                floydWarshall(i,j);
+                int k=0;
+                int s=0;
+                scanf("%d %d",&k,&s);
+                floydWarshall(k,s);
                 break;
 
             case 'D':
                 printf("Exiting the program. Goodbye!\n");
                 break;
         }
-    } while (choice != 'D');  // Continue the loop until the user chooses to exit
+    } while (userChoice != 'D');  // Continue the loop until the user chooses to exit
     return 0;
 }
