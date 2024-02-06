@@ -44,6 +44,10 @@ void floydWarshall() {
                 // If vertex k is on the shortest path from i to j, then update the value of dist[i][j]
                 if (dist[i][k] != 0 && dist[k][j] != 0 && (dist[i][k] + dist[k][j] < dist[i][j] || dist[i][j] == 0))
                     dist[i][j] = dist[i][k] + dist[k][j];
+                if (i==j){
+                    dist[i][j]=0;
+                }
+                
             }
         }
     }
