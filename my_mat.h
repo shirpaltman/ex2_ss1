@@ -8,6 +8,8 @@ int ifHasPath(int i,int j);
 void floydWarshall();
 void printMatrix();
 int printLength(int k,int s);
+int getInput();
+int knapSack (int weights[], int values[] , int selected_bool[]);
 
 
 #endif 
