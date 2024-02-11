@@ -74,7 +74,7 @@ int knapSack (int weights[], int values[] , int selected_bool[]){
     }
     printf("Maximum profit: %d\n" , sumProfit);
     
-    printf("Selected items: ");
+    printf("Selected items:");
     for (int i = 0; i < lenArray; i++)
     {
         if (selected_bool[i] == 1){
