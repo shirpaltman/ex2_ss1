@@ -28,4 +28,4 @@ my_Knapsack.o: my_Knapsack.c my_mat.h
 	$(CC) $(CFLAGS) -c my_Knapsack.c
 
 clean:
-	rm -f *.o *.a connections
+	rm -f *.o *.a my_graph my_Knapsack
