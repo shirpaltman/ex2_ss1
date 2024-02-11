@@ -82,7 +82,7 @@ int knapSack (int weights[], int values[] , int selected_bool[]){
         }
        
     }
-    printf("\n");
+    
    
     return 0;
     
