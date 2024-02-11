@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "my_mat.h"
 
+
+
+
 int main() {
     char userChoice;
-
-     do {
-        
-        
+    
+     do { 
         
         userChoice = getchar();  // Read a character
 

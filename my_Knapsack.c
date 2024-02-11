@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "my_mat.h"
 #include <math.h>
-
 #define bagWeight 20
 #define lenArray 5
 
@@ -10,87 +9,90 @@ int values[lenArray];
 int selected_bool[lenArray];
 char items[lenArray];
 
-
+int ffmax(int a, int b){
+    if (a>b){
+        return a;
+    }
+    else
+        return b;
+}
 
 int getInput(){
     for (int i = 0; i < lenArray; i++)
     {
-        scanf("%c",&items[i]);
+        scanf(" %c", &items[i]);
+        scanf(" %d", &values[i]);
+        scanf(" %d", &weights[i]);
+        
     }
     
-    for (int i = 0; i < lenArray; i++)
+   
+    for (int j = 0; j < lenArray; j++)
     {
-        scanf("%d",&values[i]);
-    }
-
-    for (int i = 0; i < lenArray; i++)
-    {
-        scanf("%d",&weights[i]);
-    }
-    
-    for (int i = 0; i < lenArray; i++)
-    {
-        selected_bool[i]=0;
+        selected_bool[j]=0;
     }
     
     return 0;
 }
 
-
 int knapSack (int weights[], int values[] , int selected_bool[]){
-    int map[lenArray + 1][lenArray + 1];
+    int map[lenArray + 1][bagWeight + 1];
  
     for (int j = 0; j <= lenArray; j++) {
+        //printf("\n%d%d%d%d%d%d%d%d%d%d%d%d%d\n",j,j,j,j,j,j,j,j,j,j,j,j,j);
         for (int w = 0; w <= bagWeight; w++) {
             if (j == 0 || w == 0)
                 map[j][w] = 0;
-            else if (weights[j-1] <= w)
-                map[j][w] = fmax(value[j-1] + map[j-1][w - weights[j-1]], map[j-1][w]);
-                selected_bool[j-1]=1;
-            else
+            else if (weights[j-1] <= w){
+                map[j][w] = ffmax(values[j-1] + map[j-1][w - weights[j-1]], map[j-1][w]);
+               
+            }
+            else{
                 map[j][w] = map[j-1][w];
+            }
+           // printf("%d  ",map[j][w]);
         }
     }
-    int result = map[lenArray][lenArray];
-    
-    for (int j = lenArray; j > 0 && result > 0; j--) {
-        if (map[j][bagWeight] != map[j - 1][bagWeight]) {
-            selected_bool[j - 1] = 1; // Mark item as selected
-            result =result - values[j - 1];
-            bagWeight = bagWeight - weights[j - 1];
+    //int result = map[lenArray+1][bagWeight+1];
+    int copyBagWeight=bagWeight;
+    for (int k = lenArray; k > 0; k--) {
+        if (map[k][copyBagWeight] != map[k - 1][copyBagWeight]) {
+            selected_bool[k - 1] = 1; // Mark item as selected
+            copyBagWeight = copyBagWeight - weights[k - 1];
         }
         else {
-            selected_bool[j - 1] = 0; // Mark item as not selected
+            selected_bool[k - 1] = 0; // Mark item as not selected
         }
     }
  
-    printf("Selected items:\n");
-    char itemTaken[lenArray];
+    
     int sumProfit = 0;
     for (int i = 0; i < lenArray; i++) {
-        if (selected_bool[i]) {
+        if (selected_bool[i]==1) {
             sumProfit=sumProfit + values[i];
-            itemTaken[i]=items[i];
-
-        }
-        else{
-           itemTaken[i]=0; 
         }
     }
-    printf("Maximum profit: %d" , sumProfit);
+    printf("Maximum profit: %d\n" , sumProfit);
     
-    printf("Items that give the maximum profit: [");
+    printf("Selected items: ");
     for (int i = 0; i < lenArray; i++)
     {
-        if (itemTaken[i] == 0){
-            printf("%c", itemTaken[i]);
-
+        if (selected_bool[i] == 1){
+            printf(" %c", items[i]);
         }
-        if(i<lenArray-1){
-            printf(", ")
-        }
+       
     }
-    printf("] \n")
+    printf("\n");
+   
     return 0;
     
 } 
+
+
+int main(){
+    
+    // Now the arrays are initialized
+    getInput();
+    knapSack(weights, values, selected_bool );
+    return 0;
+}

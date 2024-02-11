@@ -6,10 +6,14 @@ AFLAGS = rcs
 
 .PHONY: all clean
 
-all: connections 
+all: my_graph  my_Knapsack
 
-connections: my_graph.o libmymath.a 
-	$(CC) $(CFLAGS) my_graph.o libmymath.a -o connections
+my_graph: my_graph.o libmymath.a 
+	$(CC) $(CFLAGS) my_graph.o libmymath.a -o my_graph
+
+my_Knapsack: my_Knapsack.o
+	$(CC) $(CFLAGS) my_Knapsack.o -o my_Knapsack
+
 
 libmymath.a: my_mat.o
 	$(AR) $(AFLAGS) libmymath.a my_mat.o
@@ -20,8 +24,8 @@ my_graph.o: my_graph.c my_mat.h
 my_mat.o: my_mat.c my_mat.h
 	$(CC) $(CFLAGS) -c my_mat.c
 
-my_knapSack.o: my_knapSack.c my_mat.h
-	$(CC) $(CFLAGS) -c my_knapSack.c
+my_Knapsack.o: my_Knapsack.c my_mat.h
+	$(CC) $(CFLAGS) -c my_Knapsack.c
 
 clean:
 	rm -f *.o *.a connections
