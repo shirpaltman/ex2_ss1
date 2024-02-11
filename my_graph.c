@@ -17,7 +17,7 @@ int main() {
         switch (userChoice) {
             case 'A':
                 scanMatrix();
-                printf("\n");
+                //printf("\n");
                 break;
 
             case 'B':

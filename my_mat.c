@@ -9,7 +9,6 @@ int V = 10;
 
 
 void scanMatrix() {
-    printf("Enter values to the matrix: \n");
     floydRun = 0;
     int scanfChar = 0;
     for(int i = 0; i < V; i++) {
@@ -25,13 +24,6 @@ void scanMatrix() {
 
 void floydWarshall() {
     int  i, j, k;
-
-    
-    // Add all vertices one by one to the set of intermediate vertices.
-    // Before start of an iteration, we have shortest distances between all pairs of vertices such that
-    // the shortest distances consider only the vertices in set {0, 1, 2, .. k-1} as intermediate vertices.
-    // After the end of an iteration, vertex no. k is added to the set of intermediate vertices and
-    // the set becomes {0, 1, 2, .. k}.
     for (k = 0; k < V; k++) {
         // Pick all vertices as source one by one.
         for (i = 0; i < V; i++) {
@@ -69,20 +61,6 @@ int ifHasPath(int i,int j){
     }
 }
 
-
-void printMatrix() {
-    //printf("Enter values to the matrix:");
-    //int scanfChar = 0;
-    printf("\n");
-    for(int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            printf("%d",dist[i][j]);
-            
-        } 
-        printf("\n");
-    }
-    
-}
 
 int printLength(int k,int s ){
     if (floydRun != 1){
