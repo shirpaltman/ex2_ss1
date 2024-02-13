@@ -11,13 +11,11 @@ int main() {
         
         userChoice = getchar();  // Read a character
 
-        // Clear the input buffer
-        //while (getchar() != '\n');
-
+        
         switch (userChoice) {
             case 'A':
                 scanMatrix();
-                //printf("\n");
+               
                 break;
 
             case 'B':
@@ -39,10 +37,12 @@ int main() {
 
             case 'D':
                 break;
+            // case EOF:
+            //     break;
             default:
                 break;
     
         }
-    } while (userChoice != 'D');  // Continue the loop until the user chooses to exit
+    } while (userChoice != 'D' && userChoice != EOF);  // Continue the loop until the user chooses to exit
     return 0;
 }
